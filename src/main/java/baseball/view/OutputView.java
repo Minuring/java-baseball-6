@@ -7,4 +7,8 @@ public class OutputView {
     public static void printErrorMessage(String message) {
         System.out.println(PREFIX + message);
     }
+
+    public static void printWelcomeMessage() {
+        System.out.println("숫자 야구 게임을 시작합니다.");
+    }
 }
