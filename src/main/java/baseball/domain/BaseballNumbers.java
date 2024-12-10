@@ -30,7 +30,24 @@ public class BaseballNumbers {
         return new Result(strike, ball);
     }
 
-    public record Result(int strike, int ball) {}
+    public record Result(int strike, int ball) {
+
+        @Override
+        public String toString() {
+            if (ball == 0 && strike == 0) {
+                return "낫싱";
+            }
+
+            String text = "";
+            if (ball > 0) {
+                text += String.format("%d볼 ", ball);
+            }
+            if (strike > 0) {
+                text += String.format("%d스트라이크 ", strike);
+            }
+            return text;
+        }
+    }
 
     @Override
     public String toString() {
