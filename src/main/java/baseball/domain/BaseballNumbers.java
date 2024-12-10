@@ -14,6 +14,24 @@ public class BaseballNumbers {
         this.numbers = numbers;
     }
 
+    public Result compare(BaseballNumbers other) {
+        int strike = 0;
+        int ball = 0;
+        for (int seq = 0; seq < 3; seq++) {
+            int myNumber = numbers.get(seq);
+            int otherNumber = other.numbers.get(seq);
+
+            if (myNumber == otherNumber) {
+                strike++;
+            } else if (other.numbers.contains(myNumber)) {
+                ball++;
+            }
+        }
+        return new Result(strike, ball);
+    }
+
+    public record Result(int strike, int ball) {}
+
     @Override
     public String toString() {
         return numbers.toString();

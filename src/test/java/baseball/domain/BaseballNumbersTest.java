@@ -1,10 +1,13 @@
 package baseball.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import baseball.domain.BaseballNumbers.Result;
 import baseball.error.ErrorType;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -25,5 +28,17 @@ class BaseballNumbersTest {
             List.of(1, 2),
             List.of(1, 2, 3, 4)
         ));
+    }
+
+    @DisplayName("스트라이크와 볼 계산")
+    @Test
+    void compare() {
+        BaseballNumbers numbers1 = new BaseballNumbers(List.of(1,2,3));
+        BaseballNumbers numbers2 = new BaseballNumbers(List.of(2,1,3));
+
+        Result result = numbers1.compare(numbers2);
+
+        assertThat(result.strike()).isEqualTo(1);
+        assertThat(result.ball()).isEqualTo(2);
     }
 }
